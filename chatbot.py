@@ -22,6 +22,7 @@ def main():
     # on different commands - answer in Telegram
     dispatcher.add_handler(CommandHandler("add", add))
     dispatcher.add_handler(CommandHandler("help", help_command))
+    dispatcher.add_handler(CommandHandler("hello", hello))
     # To start the bot:
     updater.start_polling()
     updater.idle()
@@ -37,6 +38,13 @@ def echo(update, context):
 def help_command(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /help is issued."""
     update.message.reply_text('Helping you helping you.')
+
+def hello(update: Update, context: CallbackContext) -> None:
+    """Send a message when the command /help is issued."""
+    global redis1
+    logging.info(context.args[0])
+    msg = context.args[0] # /add keyword <-- this should store the keyword
+    update.message.reply_text('Good day ' + msg + '!')
 
 def add(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /add is issued."""
