@@ -16,4 +16,6 @@ jobs:
           HEROKU_APP_NAME: "comp7940-chatbot-taykaisheng" # Rename this to the app of your Heroku app.
         run: git push -f https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git main
       - name: SafetyCheck
+        env:
+          DEP_PATH: src/requirements.txt
         uses: aufdenpunkt/python-safety-check@master
